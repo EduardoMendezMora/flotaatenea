@@ -91,7 +91,7 @@ export default function Reports() {
           status === 'maintenance' ? 'Mantenimiento' :
           status === 'sold' ? 'Vendido' : 'Retirado',
     value: count,
-    percentage: ((count / reportData?.totalVehicles) * 100).toFixed(1)
+    percentage: ((count / (reportData?.totalVehicles || 1)) * 100).toFixed(1)
   }))
 
   const clientChartData = Object.entries(reportData?.clientDistribution || {}).map(([type, count]) => ({
@@ -213,7 +213,7 @@ export default function Reports() {
                 fill="#8884d8"
                 dataKey="value"
               >
-                {vehicleChartData.map((entry, index) => (
+                {vehicleChartData.map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
@@ -254,7 +254,7 @@ export default function Reports() {
                 fill="#8884d8"
                 dataKey="value"
               >
-                {clientChartData.map((entry, index) => (
+                {clientChartData.map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>

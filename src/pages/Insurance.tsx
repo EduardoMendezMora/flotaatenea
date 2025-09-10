@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
-import { Plus, Search, Filter, Shield, Calendar, DollarSign, AlertTriangle, FileText } from 'lucide-react'
+import { Plus, Search, Filter, Shield, Calendar, DollarSign, AlertTriangle } from 'lucide-react'
 import { Database } from '@/types/supabase'
 
 type Insurance = Database['public']['Tables']['insurance']['Row'] & {
@@ -44,7 +44,7 @@ export default function Insurance() {
     const isExpiringSoon = new Date(insurance.end_date) <= new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
     
     let matchesStatus = true
-    if (statusFilter === 'active') matchesStatus = insurance.is_active && !isExpired
+    if (statusFilter === 'active') matchesStatus = !!insurance.is_active && !isExpired
     else if (statusFilter === 'expired') matchesStatus = isExpired
     else if (statusFilter === 'expiring') matchesStatus = isExpiringSoon && !isExpired
     else if (statusFilter === 'inactive') matchesStatus = !insurance.is_active
