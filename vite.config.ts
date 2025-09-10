@@ -15,4 +15,13 @@ export default defineConfig({
     host: true,
     open: true,
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 })
