@@ -107,6 +107,21 @@ export default function Login() {
               <p className="font-medium">Usuarios de prueba:</p>
               <p>admin@flotaatenea.com / password</p>
               <p>manager@flotaatenea.com / password</p>
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    const { signUp } = await import('@/lib/supabase')
+                    await signUp('admin@flotaatenea.com', 'password')
+                    toast.success('Usuario admin creado')
+                  } catch (error: any) {
+                    toast.error('Error: ' + error.message)
+                  }
+                }}
+                className="mt-2 text-blue-600 hover:text-blue-800 text-xs underline"
+              >
+                Crear usuario admin de prueba
+              </button>
             </div>
           </div>
         </form>
