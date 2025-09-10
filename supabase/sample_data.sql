@@ -44,13 +44,35 @@ INSERT INTO clients (id, client_type, first_name, last_name, national_id, email,
 (uuid_generate_v4(), 'individual', 'María Elena', 'García Rodríguez', 'CURP987654321', 'maria.garcia@email.com', '+52 55 3333 4444', 'Calle Reforma 567', 'Guadalajara', 'Jalisco', '44100', 680, NULL, NULL, NULL, (SELECT id FROM users WHERE email = 'manager@flotaatenea.com' LIMIT 1)),
 (uuid_generate_v4(), 'business', NULL, NULL, NULL, 'contacto@empresaabc.com', '+52 55 5555 6666', 'Blvd. Manuel Ávila Camacho 890', 'Monterrey', 'Nuevo León', '64000', 820, 'Empresa ABC S.A. de C.V.', 'RFC123456789', 'Roberto Martínez Silva', (SELECT id FROM users WHERE email = 'admin@flotaatenea.com' LIMIT 1));
 
--- 3. Insertar vehículos de ejemplo
-INSERT INTO vehicles (id, vin, license_plate, make, model, year, color, engine_type, transmission, fuel_type, mileage, purchase_price, current_value, status, location, created_by) VALUES
-(uuid_generate_v4(), '1HGBH41JXMN109186', 'ABC-123-A', 'Toyota', 'Corolla', 2023, 'Blanco', '1.8L 4-Cyl', 'CVT', 'Gasolina', 15000, 350000.00, 320000.00, 'available', 'Lote Principal CDMX', (SELECT id FROM users WHERE email = 'admin@flotaatenea.com' LIMIT 1)),
-(uuid_generate_v4(), '2T1BURHE0JC123456', 'DEF-456-B', 'Nissan', 'Sentra', 2022, 'Gris', '1.6L 4-Cyl', 'CVT', 'Gasolina', 25000, 280000.00, 250000.00, 'leased', 'En uso - Cliente', (SELECT id FROM users WHERE email = 'manager@flotaatenea.com' LIMIT 1)),
-(uuid_generate_v4(), '3GNAXKEV8JL123789', 'GHI-789-C', 'Chevrolet', 'Equinox', 2023, 'Negro', '1.5L Turbo', 'Automática', 'Gasolina', 8000, 450000.00, 430000.00, 'available', 'Lote Guadalajara', (SELECT id FROM users WHERE email = 'admin@flotaatenea.com' LIMIT 1)),
-(uuid_generate_v4(), '1FTEW1EP8JKF12345', 'JKL-012-D', 'Ford', 'F-150', 2022, 'Azul', '3.3L V6', 'Automática', 'Gasolina', 35000, 580000.00, 520000.00, 'maintenance', 'Taller Autorizado', (SELECT id FROM users WHERE email = 'operator@flotaatenea.com' LIMIT 1)),
-(uuid_generate_v4(), '5NPE34AF4JH123456', 'MNO-345-E', 'Hyundai', 'Elantra', 2023, 'Rojo', '2.0L 4-Cyl', 'CVT', 'Gasolina', 12000, 320000.00, 300000.00, 'leased', 'En uso - Cliente', (SELECT id FROM users WHERE email = 'manager@flotaatenea.com' LIMIT 1));
+-- 3.-- Insertar datos de ejemplo para vehículos con campos específicos
+INSERT INTO vehicles (
+  vin, license_plate, make, model, year, color, engine_type, transmission, fuel_type,
+  mileage, purchase_price, current_value, status, location,
+  body_type, engine_displacement, cylinders, drivetrain,
+  lessor_company, lessor_legal_id, legal_representative, representative_id,
+  lease_term_weeks, weekly_price, administrative_costs
+) VALUES
+(
+  '1HGBH41JXMN109186', 'BRR629', 'Chevrolet', 'Beat', 2019, 'Blanco', 'I4', 'Manual', 'Gasolina',
+  15000, 25000.00, 23000.00, 'available', 'San José',
+  'Hatchback', 1200, 4, '4X2',
+  'Leasing Costa Rica S.A.', '3-101-123456', 'Juan Pérez Rodríguez', '1-1234-5678',
+  189, 100000.00, 400000.00
+),
+(
+  '2HGBH41JXMN109187', 'DEF456', 'Honda', 'Civic', 2021, 'Negro', 'I4', 'Manual', 'Gasolina',
+  25000, 22000.00, 20000.00, 'leased', 'Cartago',
+  'Sedán', 1500, 4, '4X2',
+  'Arrendadora Nacional S.A.', '3-101-654321', 'María González López', '2-2345-6789',
+  156, 120000.00, 350000.00
+),
+(
+  '3HGBH41JXMN109188', 'GHI789', 'Nissan', 'Sentra', 2023, 'Azul', 'I4', 'CVT', 'Gasolina',
+  8000, 24000.00, 23500.00, 'available', 'Alajuela',
+  'Sedán', 1600, 4, '4X2',
+  'Flota Atenea S.A.', '3-101-789012', 'Carlos Jiménez Vargas', '1-3456-7890',
+  208, 110000.00, 450000.00
+);
 
 -- 4. Insertar contratos de ejemplo
 INSERT INTO contracts (id, contract_number, client_id, vehicle_id, status, start_date, end_date, monthly_payment, deposit_amount, total_amount, mileage_limit, signed_date, signed_by_client, signed_by_company, created_by) VALUES

@@ -146,21 +146,36 @@ export default function Vehicles() {
                 <div className="apple-card-body">
                   <div className="mb-3">
                     <h3 className="h5 fw-bold mb-1" style={{ color: 'var(--apple-text-primary)' }}>
-                      {vehicle.year} {vehicle.make} {vehicle.model}
+                      ({vehicle.license_plate || 'N/A'}) {vehicle.make} {vehicle.model} {vehicle.year} - {vehicle.fuel_type || 'Gasolina'}
                     </h3>
-                    <p className="mb-0" style={{ color: 'var(--apple-text-secondary)', fontSize: '14px' }}>
-                      ${vehicle.current_value?.toLocaleString() || 'N/A'}
-                    </p>
                   </div>
                   
                   <div className="row g-2 mb-3" style={{ fontSize: '13px' }}>
-                    <div className="col-6">
+                    <div className="col-12">
                       <div className="d-flex align-items-center gap-2">
-                        <strong style={{ color: 'var(--apple-text-primary)' }}>Placa:</strong>
-                        <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.license_plate || 'N/A'}</span>
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Motor:</strong>
+                        <span style={{ color: 'var(--apple-text-secondary)' }}>{(vehicle as any).engine_displacement || 'N/A'} cc</span>
                       </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12">
+                      <div className="d-flex align-items-center gap-2">
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Combustible:</strong>
+                        <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.fuel_type || 'Gasolina'}</span>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="d-flex align-items-center gap-2">
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Transmisión:</strong>
+                        <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.transmission || 'Manual'}</span>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="d-flex align-items-center gap-2">
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Tracción:</strong>
+                        <span style={{ color: 'var(--apple-text-secondary)' }}>{(vehicle as any).drivetrain || '4X2'}</span>
+                      </div>
+                    </div>
+                    <div className="col-12">
                       <div className="d-flex align-items-center gap-2">
                         <strong style={{ color: 'var(--apple-text-primary)' }}>Color:</strong>
                         <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.color || 'N/A'}</span>
@@ -168,38 +183,22 @@ export default function Vehicles() {
                     </div>
                     <div className="col-12">
                       <div className="d-flex align-items-center gap-2">
-                        <strong style={{ color: 'var(--apple-text-primary)' }}>VIN:</strong>
-                        <span style={{ color: 'var(--apple-text-secondary)', fontSize: '12px' }} className="text-truncate">{vehicle.vin}</span>
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Plazo:</strong>
+                        <span style={{ color: 'var(--apple-text-secondary)' }}>{(vehicle as any).lease_term_weeks || 'N/A'} semanas</span>
                       </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12">
                       <div className="d-flex align-items-center gap-2">
-                        <Fuel size={14} style={{ color: 'var(--apple-gray-5)' }} />
-                        <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.fuel_type || 'N/A'}</span>
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Cuota semanal:</strong>
+                        <span style={{ color: 'var(--apple-green)', fontWeight: '600' }}>₡{(vehicle as any).weekly_price?.toLocaleString() || 'N/A'}</span>
                       </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12">
                       <div className="d-flex align-items-center gap-2">
-                        <Settings size={14} style={{ color: 'var(--apple-gray-5)' }} />
-                        <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.mileage?.toLocaleString() || 0} km</span>
+                        <strong style={{ color: 'var(--apple-text-primary)' }}>Gastos administrativos:</strong>
+                        <span style={{ color: 'var(--apple-blue)', fontWeight: '600' }}>₡{(vehicle as any).administrative_costs?.toLocaleString() || 'N/A'}</span>
                       </div>
                     </div>
-                    {vehicle.location && (
-                      <div className="col-12">
-                        <div className="d-flex align-items-center gap-2">
-                          <MapPin size={14} style={{ color: 'var(--apple-gray-5)' }} />
-                          <span style={{ color: 'var(--apple-text-secondary)' }}>{vehicle.location}</span>
-                        </div>
-                      </div>
-                    )}
-                    {vehicle.next_service_due && (
-                      <div className="col-12">
-                        <div className="d-flex align-items-center gap-2">
-                          <Calendar size={14} style={{ color: 'var(--apple-orange)' }} />
-                          <span style={{ color: 'var(--apple-orange)', fontSize: '12px' }}>Servicio: {new Date(vehicle.next_service_due).toLocaleDateString()}</span>
-                        </div>
-                      </div>
-                    )}
                   </div>
                   
                   {/* Actions */}
