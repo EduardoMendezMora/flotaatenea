@@ -1,6 +1,16 @@
 # 🚗 FlotaAtenea - Sistema de Administración de Flota de Vehículos
 
-Sistema completo para la gestión de flotas de vehículos en modalidad leasing, desarrollado con tecnologías modernas y base de datos en Supabase.
+Sistema completo para la gestión de flotas de vehículos en modalidad leasing, desarrollado con React + TypeScript + Supabase y diseño minimalista inspirado en Apple.
+
+## ✨ **Nuevo Diseño Apple Minimalista**
+
+La aplicación cuenta con un diseño completamente renovado inspirado en el ecosistema Apple:
+- 🎨 **Paleta de colores Apple oficial** (azul, verde, naranja, rojo)
+- 📱 **Tipografía San Francisco** (system fonts)
+- 🔄 **Animaciones suaves** y transiciones elegantes
+- 📊 **Cards modernas** con sombras sutiles y bordes redondeados
+- 🧭 **Navegación intuitiva** con iconos Lucide
+- 📱 **Diseño completamente responsivo** con Bootstrap 5
 
 ## 🎯 Características Principales
 
@@ -55,11 +65,12 @@ Sistema completo para la gestión de flotas de vehículos en modalidad leasing, 
 
 ### Frontend
 - **React** con TypeScript
-- **Tailwind CSS** para estilos
-- **Shadcn/ui** para componentes
+- **Bootstrap 5** + **Tailwind CSS** para estilos
+- **Tema Apple personalizado** (apple-theme.css)
 - **React Query** para manejo de estado
 - **React Hook Form** para formularios
 - **Recharts** para gráficos
+- **Lucide React** para iconografía
 
 ### Backend
 - **Supabase** (PostgreSQL + Auth + Storage + Realtime)
